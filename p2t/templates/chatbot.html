@@ -1,0 +1,614 @@
+{% load static %}
+
+{% block content %}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root {
+        --p2t-cream: #F8F4EC;
+        --p2t-black: #111111;
+        --p2t-orange: #FF6A3D;
+        --p2t-blue: #A7D8F0;
+        --p2t-coral: #F34D6D;
+        --p2t-white: #FFFFFF;
+        --p2t-gray: #6B6B6B;
+        --p2t-border: #E5DED2;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 28px 20px;
+        font-family: 'Inter', sans-serif;
+        background: var(--p2t-cream);
+        color: var(--p2t-black);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Elementos gráficos da identidade P2T */
+    body::before {
+        content: '';
+        position: fixed;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: var(--p2t-blue);
+        top: -150px;
+        right: -120px;
+        opacity: .8;
+        z-index: -2;
+    }
+
+    body::after {
+        content: '';
+        position: fixed;
+        width: 280px;
+        height: 280px;
+        background: var(--p2t-orange);
+        bottom: -150px;
+        left: -100px;
+        transform: rotate(18deg);
+        opacity: .9;
+        z-index: -2;
+    }
+
+    .topo {
+        width: 100%;
+        max-width: 920px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+    }
+
+    .marca {
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+    }
+
+    .logo {
+        font-family: 'Anton', Impact, sans-serif;
+        font-size: 2.4rem;
+        line-height: .85;
+        letter-spacing: -1px;
+    }
+
+    .logo span {
+        color: var(--p2t-orange);
+    }
+
+    .digital {
+        font-size: .66rem;
+        font-weight: 800;
+        letter-spacing: .32em;
+        margin-bottom: 1px;
+    }
+
+    .tagline {
+        font-size: .72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        max-width: 230px;
+        text-align: right;
+    }
+
+    h2 {
+        width: 100%;
+        max-width: 920px;
+        margin: 0 0 18px;
+        padding: 20px 24px;
+        background: var(--p2t-black);
+        color: var(--p2t-cream);
+        font-family: 'Anton', Impact, sans-serif;
+        font-size: clamp(1.65rem, 4vw, 2.6rem);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+        text-align: left;
+        position: relative;
+        box-shadow: 8px 8px 0 var(--p2t-orange);
+    }
+
+    h2::before {
+        content: 'P2T DIGITAL';
+        display: block;
+        color: var(--p2t-orange);
+        font-family: 'Inter', sans-serif;
+        font-size: .62rem;
+        font-weight: 800;
+        letter-spacing: .18em;
+        margin-bottom: 9px;
+    }
+
+    #chat {
+        width: 100%;
+        max-width: 920px;
+        height: min(650px, 70vh);
+        min-height: 480px;
+        background: var(--p2t-white);
+        border: 2px solid var(--p2t-black);
+        border-radius: 4px;
+        box-shadow: 12px 12px 0 var(--p2t-blue);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #chat::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: var(--p2t-orange);
+        z-index: 2;
+    }
+
+    h4 {
+        background: var(--p2t-cream);
+        color: var(--p2t-black);
+        padding: 22px 26px 18px;
+        margin: 0;
+        border-bottom: 2px solid var(--p2t-black);
+        font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        text-align: left;
+    }
+
+    h4::before {
+        content: '●';
+        color: var(--p2t-orange);
+        margin-right: 10px;
+    }
+
+    #mensagens {
+        flex: 1;
+        padding: 24px;
+        overflow-y: auto;
+        background:
+            linear-gradient(rgba(17,17,17,.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(17,17,17,.035) 1px, transparent 1px),
+            #FCFBF8;
+        background-size: 24px 24px;
+        scroll-behavior: smooth;
+    }
+
+    #mensagens::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    #mensagens::-webkit-scrollbar-track {
+        background: var(--p2t-cream);
+    }
+
+    #mensagens::-webkit-scrollbar-thumb {
+        background: var(--p2t-black);
+        border-radius: 0;
+    }
+
+    .mensagem {
+        margin-bottom: 16px;
+        animation: fadeInUp .3s ease;
+        position: relative;
+        max-width: 72%;
+        padding: 13px 17px;
+        font-size: .94rem;
+        line-height: 1.45;
+        word-wrap: break-word;
+        border-radius: 3px;
+    }
+
+    .mensagem.user {
+        margin-left: auto;
+        background: var(--p2t-orange);
+        color: var(--p2t-black);
+        border: 2px solid var(--p2t-black);
+        border-bottom-right-radius: 0;
+        font-weight: 600;
+    }
+
+    .mensagem.bot {
+        margin-right: auto;
+        margin-left: 0;
+        background: var(--p2t-white);
+        color: var(--p2t-black);
+        border: 2px solid var(--p2t-black);
+        border-bottom-left-radius: 0;
+    }
+
+    .mensagem.bot::before {
+        content: 'P2T';
+        position: absolute;
+        left: 0;
+        top: -20px;
+        font-size: .58rem;
+        font-weight: 800;
+        letter-spacing: .12em;
+        color: var(--p2t-gray);
+    }
+
+    .mensagem.digitando {
+        margin-right: auto;
+        margin-left: 0;
+        background: var(--p2t-blue);
+        color: var(--p2t-black);
+        border: 2px solid var(--p2t-black);
+        border-bottom-left-radius: 0;
+        font-weight: 600;
+        font-style: normal;
+    }
+
+    .mensagem.digitando::before {
+        content: 'P2T';
+        position: absolute;
+        left: 0;
+        top: -20px;
+        font-size: .58rem;
+        font-weight: 800;
+        letter-spacing: .12em;
+    }
+
+    .mensagem.digitando::after {
+        content: '...';
+        animation: dots 1.2s infinite;
+        margin-left: 4px;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes dots {
+        0%, 20% { content: ''; }
+        40% { content: '.'; }
+        60% { content: '..'; }
+        80%, 100% { content: '...'; }
+    }
+
+    .chat-vazio {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--p2t-black);
+        text-align: center;
+        padding: 30px;
+    }
+
+    .chat-vazio::before {
+        content: 'P2T';
+        font-family: 'Anton', Impact, sans-serif;
+        font-size: 4rem;
+        line-height: 1;
+        color: var(--p2t-orange);
+        margin-bottom: 18px;
+    }
+
+    .chat-vazio p {
+        font-size: 1.05rem;
+        font-weight: 800;
+        margin: 0 0 7px;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+    }
+
+    .chat-vazio small {
+        color: var(--p2t-gray);
+        font-size: .88rem;
+        max-width: 360px;
+    }
+
+    .input-area {
+        padding: 16px;
+        background: var(--p2t-cream);
+        border-top: 2px solid var(--p2t-black);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    #pergunta {
+        flex: 1;
+        min-width: 0;
+        padding: 14px 17px;
+        border: 2px solid var(--p2t-black);
+        border-radius: 3px;
+        font-size: .95rem;
+        font-family: inherit;
+        outline: none;
+        background: var(--p2t-white);
+        color: var(--p2t-black);
+        transition: box-shadow .2s ease, transform .2s ease;
+    }
+
+    #pergunta:focus {
+        box-shadow: 4px 4px 0 var(--p2t-blue);
+        transform: translate(-1px, -1px);
+    }
+
+    #pergunta::placeholder {
+        color: #888;
+    }
+
+    button {
+        background: var(--p2t-black);
+        color: var(--p2t-white);
+        border: 2px solid var(--p2t-black);
+        padding: 14px 23px;
+        border-radius: 3px;
+        font-family: inherit;
+        font-size: .9rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+        cursor: pointer;
+        transition: .2s ease;
+        min-width: 105px;
+    }
+
+    button:hover {
+        background: var(--p2t-orange);
+        color: var(--p2t-black);
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 var(--p2t-black);
+    }
+
+    button:active {
+        transform: translate(0, 0);
+        box-shadow: none;
+    }
+
+    button:disabled {
+        opacity: .65;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    button.loading {
+        position: relative;
+        color: transparent;
+    }
+
+    button.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 15px;
+        height: 15px;
+        margin: -8px 0 0 -8px;
+        border: 2px solid var(--p2t-white);
+        border-top-color: var(--p2t-orange);
+        border-radius: 50%;
+        animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .painel {
+        margin-top: 24px;
+        color: var(--p2t-black);
+        text-decoration: none;
+        font-size: .78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        padding: 10px 14px;
+        border: 2px solid var(--p2t-black);
+        background: var(--p2t-white);
+        transition: .2s ease;
+    }
+
+    .painel:hover {
+        background: var(--p2t-orange);
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 var(--p2t-black);
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 18px 12px;
+            justify-content: flex-start;
+        }
+
+        .topo {
+            margin-top: 8px;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            font-size: 2rem;
+        }
+
+        .tagline {
+            display: none;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            padding: 17px 18px;
+            margin-bottom: 15px;
+            box-shadow: 6px 6px 0 var(--p2t-orange);
+        }
+
+        #chat {
+            height: calc(100vh - 205px);
+            min-height: 450px;
+            border-radius: 3px;
+            box-shadow: 7px 7px 0 var(--p2t-blue);
+        }
+
+        h4 {
+            padding: 19px 18px 16px;
+            font-size: .88rem;
+        }
+
+        #mensagens {
+            padding: 20px 16px;
+        }
+
+        .mensagem {
+            max-width: 86%;
+            font-size: .9rem;
+        }
+
+        .input-area {
+            padding: 12px;
+        }
+
+        #pergunta {
+            padding: 13px 14px;
+        }
+
+        button {
+            min-width: 78px;
+            padding: 13px 15px;
+        }
+
+        .chat-vazio::before {
+            font-size: 3rem;
+        }
+    }
+</style>
+
+<div class="topo">
+    <div class="marca">
+        <div class="logo">P2T<span>.</span></div>
+        <div class="digital">DIGITAL</div>
+    </div>
+    <div class="tagline">Presença digital para negócios reais.</div>
+</div>
+
+<h2>Chatbot I.A. personalizado</h2>
+
+<div id="chat">
+    <h4>Converse com o assistente P2T</h4>
+
+    <div id="mensagens">
+        <div class="chat-vazio">
+            <p>Olá! Como podemos ajudar?</p>
+            <small>Digite sua pergunta abaixo para começar a conversa.</small>
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="pergunta" placeholder="Digite sua pergunta..." />
+        <button onclick="enviarPergunta()">Enviar</button>
+    </div>
+</div>
+
+<a href="{% url 'home' %}" class="painel">← Voltar ao início</a>
+<a href="../../chatbot/admin.php" class="painel">Painel de perguntas</a>
+
+<script>
+    function adicionarMensagem(texto, classe) {
+        const div = document.createElement('div');
+        div.className = `mensagem ${classe}`;
+        div.textContent = texto;
+
+        const chatVazio = document.querySelector('.chat-vazio');
+        if (chatVazio) {
+            chatVazio.remove();
+        }
+
+        document.getElementById('mensagens').appendChild(div);
+
+        const mensagens = document.getElementById('mensagens');
+        mensagens.scrollTop = mensagens.scrollHeight;
+    }
+
+    function mostrarDigitando() {
+        const mensagens = document.getElementById('mensagens');
+        const digitandoDiv = document.createElement('div');
+        digitandoDiv.className = 'mensagem digitando';
+        digitandoDiv.id = 'digitando';
+        digitandoDiv.textContent = 'P2T está processando';
+
+        mensagens.appendChild(digitandoDiv);
+        mensagens.scrollTop = mensagens.scrollHeight;
+    }
+
+    function removerDigitando() {
+        const digitando = document.getElementById('digitando');
+        if (digitando) {
+            digitando.remove();
+        }
+    }
+
+    async function enviarPergunta() {
+        const input = document.getElementById('pergunta');
+        const button = document.querySelector('button');
+        const pergunta = input.value.trim();
+
+        if (!pergunta) return;
+
+        adicionarMensagem(pergunta, 'user');
+        input.value = '';
+
+        button.disabled = true;
+        button.classList.add('loading');
+        const textoOriginal = button.textContent;
+        button.textContent = '';
+
+        mostrarDigitando();
+
+        try {
+            const formData = new FormData();
+            formData.append('pergunta', pergunta);
+
+            const resposta = await fetch("{% url 'responder' %}", {
+                method: 'POST',
+                body: formData
+            });
+
+            const json = await resposta.json();
+
+            removerDigitando();
+            adicionarMensagem(json.resposta || 'Erro ao responder.', 'bot');
+
+        } catch (error) {
+            removerDigitando();
+            adicionarMensagem('Erro ao conectar com o servidor.', 'bot');
+        } finally {
+            button.disabled = false;
+            button.classList.remove('loading');
+            button.textContent = textoOriginal;
+        }
+    }
+
+    document.getElementById('pergunta').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            enviarPergunta();
+        }
+    });
+</script>
+
+{% endblock content %}
