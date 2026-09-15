@@ -7,6 +7,7 @@ cd<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Serif:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="src/style.css">
 </head>
 <body>
 
@@ -198,30 +199,109 @@ cd<!DOCTYPE html>
     </div>
   </section>
  
-  <section>
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Como a gente fala</h2>
-        <p>Sem promessa vazia. O cliente entende o que está comprando.</p>
-      </div>
-      <div class="voice">
-        <div class="voice-col yes">
-          <h3>DIZEMOS</h3>
-          <ul>
-            <li>Olha o que preparamos pro seu negócio.</li>
-            <li>Seu site pode vender melhor.</li>
-            <li>Já deixamos uma versão pronta pra você ver.</li>
-          </ul>
+
+  <section class="quote-sec" id="contato">
+    <div class="wrap quote-grid">
+ 
+      <div class="quote-left">
+        <p class="eyebrow-strong">ORÇAMENTO COMPLETO, RÁPIDO E SEM ENROLAÇÃO</p>
+        <h2>Receba agora uma proposta pro seu novo site.</h2>
+ 
+        <div class="contact-row">
+          <div class="ic">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3z" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6"/></svg>
+          </div>
+          <div class="meta">
+            <div class="h">E-MAIL DE SUPORTE</div>
+            <a href="mailto:p2tdigitaltech@gmail.com">p2tdigitaltech@gmail.com</a>
+          </div>
         </div>
-        <div class="voice-col no">
-          <h3>EVITAMOS</h3>
-          <ul>
-            <li>Solução omnichannel.</li>
-            <li>Ecossistema digital integrado.</li>
-            <li>Transformação disruptiva com IA.</li>
-          </ul>
+ 
+        <div class="contact-row">
+          <div class="ic">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.6-6.7L20 4l-1 3.7A8 8 0 0 1 20 12Z" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 8.7c.3 2 2 4.4 4 5.2.4.2.8 0 1-.3l.6-.9c.2-.3.6-.4.9-.2l1.6.9c.3.2.4.6.3.9-.4 1.1-1.6 1.8-2.7 1.6-2.8-.5-5.6-3.1-6.3-5.9-.3-1.1.3-2.3 1.4-2.8.3-.1.7 0 .9.3Z" stroke="currentColor" stroke-width="1.2"/></svg>
+          </div>
+          <div class="meta">
+            <div class="h">WHATSAPP</div>
+            <a href="https://wa.me/5514996551410" target="_blank" rel="noopener">+55 (14) 9 99655-1410</a>
+          </div>
+        </div>
+ 
+        <div class="also">
+          <div class="h">Acompanhe também</div>
+          <div class="social-row">
+            <a href="#" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 12a8 8 0 1 1-3.6-6.7L20 4l-1 3.7A8 8 0 0 1 20 12Z" stroke="currentColor" stroke-width="1.6"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+            <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46" stroke="currentColor" stroke-width="1.6"/><path d="M14 4c.4 2 2 3.6 4 4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+            <a href="#" aria-label="Google"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 12h6" stroke="currentColor" stroke-width="1.6"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><circle cx="8" cy="8" r="1" fill="currentColor"/><path d="M8 11v6M12 17v-4a2 2 0 0 1 4 0v4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+          </div>
         </div>
       </div>
+ 
+      <div class="quote-card">
+        <h3>ORÇAMENTO RÁPIDO</h3>
+        <form class="quote-form" id="quoteForm">
+          <div class="frow">
+            <div class="field">
+              <label for="q-nome">Nome</label>
+              <input id="q-nome" name="nome" type="text" placeholder="Seu nome" required>
+            </div>
+            <div class="field">
+              <label for="q-negocio">Nome do negócio</label>
+              <input id="q-negocio" name="negocio" type="text" placeholder="Ex: Restaurante Sabor">
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="q-whats">WhatsApp</label>
+              <input id="q-whats" name="whatsapp" type="tel" placeholder="(11) 9 0000-0000" required>
+            </div>
+            <div class="field">
+              <label for="q-email">Email</label>
+              <input id="q-email" name="email" type="email" placeholder="seu@email.com">
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="q-tipo">Tipo de projeto</label>
+              <select id="q-tipo" name="tipo">
+                <option>Site institucional</option>
+                <option>Landing page</option>
+                <option>Página de campanha</option>
+                <option>Presença online completa</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="q-material">Já tem identidade visual?</label>
+              <select id="q-material" name="material">
+                <option>Tenho tudo pronto (logo, cores, textos)</option>
+                <option>Tenho só o logo</option>
+                <option>Preciso de tudo do zero</option>
+              </select>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field" style="grid-column:1/-1;">
+              <label for="q-prazo">Prazo desejado</label>
+              <select id="q-prazo" name="prazo">
+                <option>Urgente — até 7 dias</option>
+                <option>Nas próximas 2 a 3 semanas</option>
+                <option>Sem pressa, só pesquisando</option>
+              </select>
+            </div>
+          </div>
+          <div class="field" style="margin-bottom:22px;">
+            <label for="q-detalhes">Detalhes sobre o projeto</label>
+            <textarea id="q-detalhes" name="detalhes" placeholder="Conte um pouco sobre o seu negócio e o que você precisa..."></textarea>
+          </div>
+          <button type="submit" class="quote-submit">ENVIAR ORÇAMENTO</button>
+          <p class="quote-note">Ao enviar, abrimos o WhatsApp com sua mensagem pronta pra confirmar.</p>
+        </form>
+      </div>
+ 
     </div>
   </section>
  
@@ -230,7 +310,7 @@ cd<!DOCTYPE html>
       <h2>Uma nova presença digital para o seu negócio.</h2>
       <div class="side">
         <p>Resposta em até 1 dia útil. Sem compromisso pra conversar.</p>
-        <a href="mailto:contato@p2tdigital.com.br" class="btn">Quero meu site →</a>
+        <a href="mailto:p2tdigitaltech@gmail.com" class="btn">Quero meu site →</a>
       </div>
     </div>
   </section>
@@ -244,7 +324,7 @@ cd<!DOCTYPE html>
       <div class="foot-links">
         <div>
           <span class="h">Contato</span>
-          <a href="mailto:contato@p2tdigital.com.br">contato@p2tdigital.com.br</a>
+          <a href="mailto:p2tdigitaltech@gmail.com">p2tdigitaltech@gmail.com</a>
           <a href="https://instagram.com/p2tdigital" target="_blank">@p2tdigital</a>
         </div>
         <div>
