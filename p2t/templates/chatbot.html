@@ -526,7 +526,6 @@
 </div>
 
 <a href="{% url 'home' %}" class="painel">← Voltar ao início</a>
-<a href="../../chatbot/admin.php" class="painel">Painel de perguntas</a>
 
 <script>
     function adicionarMensagem(texto, classe) {
@@ -581,13 +580,15 @@
         mostrarDigitando();
 
         try {
-            const formData = new FormData();
-            formData.append('pergunta', pergunta);
-
             const resposta = await fetch("{% url 'responder' %}", {
-                method: 'POST',
-                body: formData
-            });
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    pergunta: pergunta
+                })
+            })
 
             const json = await resposta.json();
 

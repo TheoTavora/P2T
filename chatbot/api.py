@@ -7,14 +7,16 @@ from flask import Flask, request, jsonify
 from sentence_transformers import SentenceTransformer
 import json
 import numpy as np
+from pathlib import Path
 
 app = Flask(__name__)
 
+BASE_DIR = Path(__file__).resolve().parent
 # Carrega o modelo e a base do FAQ uma única vez
 print("Carregando modelo e base de dados...")
 modelo = SentenceTransformer('intfloat/multilingual-e5-small')
 
-with open("base_faq.json", "r", encoding="utf-8") as f:
+with open(BASE_DIR / "base_faq.json", "r", encoding="utf-8") as f:
     base_faq = json.load(f)
 
 # Pré-processa os embeddings do FAQ
