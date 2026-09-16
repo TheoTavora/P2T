@@ -5,10 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node --env-file-if-exists=.env server/server.js",
+    "dev:full": "concurrently \"npm run dev\" \"npm run server\"",
     "build": "vite build",
+    "vercel-build": "npm run build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "concurrently": "^10.0.5",
     "vite": "latest"
+  },
+  "dependencies": {
+    "resend": "^6.28.1"
   }
 }
